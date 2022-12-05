@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { KeyboardAvoidingView, Pressable, Text, Platform } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { useTranslation } from 'react-i18next'
 
 import Editor from './Compose/Editor'
 import EditAttachment from './Compose/EditAttachment'
@@ -8,6 +9,8 @@ import EditAttachment from './Compose/EditAttachment'
 const Stack = createNativeStackNavigator()
 
 export default function Compose({ navigation }: any) {
+  const { t } = useTranslation('common')
+
   const totalTextCount = 0
   const maxTootChars = 500
   const headerContent = useMemo(() => {
@@ -16,13 +19,13 @@ export default function Compose({ navigation }: any) {
 
   const headerLeft = () => (
     <Pressable onPress={() => navigation.goBack()}>
-      <Text>Cancel</Text>
+      <Text>{t('cancel')}</Text>
     </Pressable>
   )
 
   const headerRight = () => (
     <Pressable onPress={() => navigation.navigate('BottomTabNavigator')}>
-      <Text style={{ fontWeight: '600' }}>Publish</Text>
+      <Text style={{ fontWeight: '600' }}>{t('publish')}</Text>
     </Pressable>
   )
 

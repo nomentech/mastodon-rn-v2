@@ -1,6 +1,9 @@
 import { TextInput, StyleSheet } from 'react-native'
+import { useTranslation } from 'react-i18next'
 
 export default function Header() {
+  const { t } = useTranslation('common')
+
   return (
     <>
       <TextInput 
@@ -16,7 +19,7 @@ export default function Header() {
         enablesReturnKeyAutomatically
         multiline
         scrollEnabled={false}
-        placeholder='Spoiler warning' 
+        placeholder={t('cw_placeholder') as any}
       />
       <TextInput 
         style={{
@@ -29,7 +32,7 @@ export default function Header() {
         enablesReturnKeyAutomatically
         multiline
         scrollEnabled={false}
-        placeholder="What's on your mind" 
+        placeholder={t('content_placeholder') as any}
       />
     </>
   )
