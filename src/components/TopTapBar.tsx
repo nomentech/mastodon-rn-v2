@@ -1,9 +1,11 @@
 import { View, Pressable, Text } from 'react-native'
+import { useTheme } from '@react-navigation/native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Ionicons as Icon } from '@expo/vector-icons'
 
 export default function TopTabBar ({ state, descriptors, navigation }: any) {
   const insets = useSafeAreaInsets()
+  const { colors } = useTheme()
 
   return (
     <View style={{ 
@@ -42,7 +44,8 @@ export default function TopTabBar ({ state, descriptors, navigation }: any) {
         })}
       </View>
       <Icon 
-        name='add-circle' size={30} style={{ marginRight: 10 }}
+        name='add-circle' size={30} 
+        color={colors.primary} style={{ marginRight: 10 }}
         onPress={() => navigation.navigate('Compose')}
       />
     </View>
