@@ -4,7 +4,7 @@ import { FlatList, View } from 'react-native'
 import Header from './Editor/Header'
 import Toolbar from './Editor/Toolbar'
 
-export default function Editor() {
+const Editor = () => {
   const isFetching = false
   const listEmpty = useMemo(() => {
     if (isFetching) {
@@ -18,7 +18,7 @@ export default function Editor() {
 
   return (
     <View style={{ flex: 1 }}>
-      <FlatList 
+      <FlatList
         data={undefined}
         renderItem={() => <></>}
         ListEmptyComponent={listEmpty}
@@ -30,3 +30,5 @@ export default function Editor() {
     </View>
   )
 }
+
+export default Editor

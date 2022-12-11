@@ -1,28 +1,32 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { useTranslation } from 'react-i18next'
 import TopTabBar from '../../components/TopTapBar'
-import Home from './TopTabs/Home'
-import Local from './TopTabs/Local'
+import Following from './Home/Following'
+import Local from './Home/Local'
 
 const TopTab = createMaterialTopTabNavigator()
 
-export default function TopTabNavigator () {
+const Home = () => {
   const { t } = useTranslation('common')
 
   return (
     <TopTab.Navigator tabBar={(props) => <TopTabBar {...props} />}>
-      <TopTab.Screen 
-        name='Home' 
-        component={Home} 
+      <TopTab.Screen
+        name='Following'
+        component={Following}
         options={{
-          tabBarLabel: t('home') as any
-        }}/>
-      <TopTab.Screen 
-        name='Local' 
-        component={Local} 
+          tabBarLabel: t('following') || '',
+        }}
+      />
+      <TopTab.Screen
+        name='Local'
+        component={Local}
         options={{
-          tabBarLabel: t('local') as any
-        }} />
+          tabBarLabel: t('local') || '',
+        }}
+      />
     </TopTab.Navigator>
   )
 }
+
+export default Home

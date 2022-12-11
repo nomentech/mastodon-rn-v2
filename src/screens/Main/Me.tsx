@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, View } from 'react-native'
 
-const EditAttachment = () => (
+const Me = ({ navigation }: any) => (
   <View style={styles.container}>
-    <Text>EditAttachment Screen</Text>
+    <Text>Me Screen</Text>
     <StatusBar style='auto' />
+    <Button onPress={() => navigation.navigate('Auth')} title='Logout' />
   </View>
 )
 
@@ -17,4 +18,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default EditAttachment
+export default Me

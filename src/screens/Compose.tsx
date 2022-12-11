@@ -8,7 +8,7 @@ import EditAttachment from './Compose/EditAttachment'
 
 const Stack = createNativeStackNavigator()
 
-export default function Compose({ navigation }: any) {
+const Compose = ({ navigation }: any) => {
   const { t } = useTranslation('common')
 
   const totalTextCount = 0
@@ -24,13 +24,13 @@ export default function Compose({ navigation }: any) {
   )
 
   const headerRight = () => (
-    <Pressable onPress={() => navigation.navigate('BottomTabNavigator')}>
+    <Pressable onPress={() => navigation.navigate('Main')}>
       <Text style={{ fontWeight: '600' }}>{t('publish')}</Text>
     </Pressable>
   )
 
   return (
-    <KeyboardAvoidingView 
+    <KeyboardAvoidingView
       style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
@@ -41,15 +41,12 @@ export default function Compose({ navigation }: any) {
           options={{
             title: headerContent,
             headerTitleStyle: {
-              fontWeight:
-                totalTextCount > maxTootChars
-                  ? 'bold'
-                  : 'light',
-              fontSize: 16
+              fontWeight: totalTextCount > maxTootChars ? 'bold' : 'light',
+              fontSize: 16,
             } as any,
             headerTintColor: totalTextCount > maxTootChars ? 'red' : 'black',
             headerLeft,
-            headerRight
+            headerRight,
           }}
         />
         <Stack.Screen
@@ -61,3 +58,5 @@ export default function Compose({ navigation }: any) {
     </KeyboardAvoidingView>
   )
 }
+
+export default Compose

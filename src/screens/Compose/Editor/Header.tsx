@@ -1,27 +1,27 @@
 import { TextInput, StyleSheet } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
-export default function Header() {
+const Header = () => {
   const { t } = useTranslation('common')
 
   return (
     <>
-      <TextInput 
+      <TextInput
         style={{
           marginTop: 8,
           paddingBottom: 16,
           marginLeft: 16,
           marginRight: 16,
-          borderBottomWidth: StyleSheet.hairlineWidth
+          borderBottomWidth: StyleSheet.hairlineWidth,
         }}
         autoCorrect={false}
         autoFocus
         enablesReturnKeyAutomatically
         multiline
         scrollEnabled={false}
-        placeholder={t('cw_placeholder') as any}
+        placeholder={t('cw_placeholder') || ''}
       />
-      <TextInput 
+      <TextInput
         style={{
           marginTop: 8,
           paddingBottom: 16,
@@ -32,8 +32,10 @@ export default function Header() {
         enablesReturnKeyAutomatically
         multiline
         scrollEnabled={false}
-        placeholder={t('content_placeholder') as any}
+        placeholder={t('content_placeholder') || ''}
       />
     </>
   )
 }
+
+export default Header

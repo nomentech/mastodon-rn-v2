@@ -1,18 +1,13 @@
 import { StatusBar } from 'expo-status-bar'
 import { Button, StyleSheet, Text, View } from 'react-native'
 
-export default function Auth({ navigation }: any) {
-  return (
-    <View style={styles.container}>
-      <Text>Auth Screen</Text>
-      <StatusBar style="auto" />
-      <Button 
-        onPress={() => navigation.navigate('BottomTabNavigator')} 
-        title='Login'
-      />
-    </View>
-  )
-}
+const Auth = ({ navigation }: any) => (
+  <View style={styles.container}>
+    <Text>Auth Screen</Text>
+    <StatusBar style='auto' />
+    <Button onPress={() => navigation.navigate('Main')} title='Login' />
+  </View>
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -22,3 +17,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 })
+
+export default Auth
