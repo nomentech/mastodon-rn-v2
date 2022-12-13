@@ -1,9 +1,14 @@
+import { getLocales } from 'expo-localization'
 import Root from './src/Root'
 import i18n from './src/i18n/i18n'
-import { getLocales } from 'expo-localization'
+import { Provider } from 'react-redux'
+import { store } from './src/store'
 
 i18n.changeLanguage(getLocales()[0].languageCode)
 
-const App = () => <Root />
-
+const App = () => (
+  <Provider store={store}>
+    <Root />
+  </Provider>
+)
 export default App

@@ -1,7 +1,7 @@
 import { View, Pressable, Text } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { Ionicons as Icon } from '@expo/vector-icons'
+import MyButton from '../../../components/MyButton'
 
 const TopTabBar = ({ state, descriptors, navigation }: any) => {
   const insets = useSafeAreaInsets()
@@ -17,7 +17,7 @@ const TopTabBar = ({ state, descriptors, navigation }: any) => {
         alignItems: 'center',
       }}
     >
-      <Icon disabled size={30} style={{ marginLeft: 10 }} />
+      <MyButton disabled={true} style={{ marginLeft: 10 }} borderWidth={0} />
       <View style={{ flexDirection: 'row' }}>
         {state.routes.map((route: any, index: number) => {
           const { options } = descriptors[route.key]
@@ -49,10 +49,10 @@ const TopTabBar = ({ state, descriptors, navigation }: any) => {
           )
         })}
       </View>
-      <Icon
+      <MyButton
         name='add-circle'
-        size={30}
-        color={colors.primary}
+        type='icon'
+        borderWidth={0}
         style={{ marginRight: 10 }}
         onPress={() => navigation.navigate('Compose')}
       />

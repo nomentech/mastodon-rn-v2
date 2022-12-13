@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { useTranslation } from 'react-i18next'
-import TopTabBar from '../../components/TopTapBar'
+import TopTabBar from './Home/TopTapBar'
 import Following from './Home/Following'
 import Local from './Home/Local'
 

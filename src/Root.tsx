@@ -10,7 +10,7 @@ const NativeStack = createNativeStackNavigator()
 
 const Root = () => (
   <NavigationContainer theme={themes.default}>
-    <NativeStack.Navigator initialRouteName='Auth'>
+    <NativeStack.Navigator initialRouteName='Main'>
       <NativeStack.Screen
         name='Auth'
         component={Auth}

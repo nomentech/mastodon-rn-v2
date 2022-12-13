@@ -8,5 +8,7 @@
   "publish": "Publish",
   "cancel": "Cancel",
   "cw_placeholder": "Spoiler warning",
-  "content_placeholder": "What's on your mind?"
+  "content_placeholder": "What's on your mind?",
+  "instance_domain": "instance.domain",
+  "login": "Login"
 }
