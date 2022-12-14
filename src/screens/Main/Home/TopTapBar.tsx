@@ -5,7 +5,6 @@ import MyButton from '../../../components/MyButton'
 
 const TopTabBar = ({ state, descriptors, navigation }: any) => {
   const insets = useSafeAreaInsets()
-  const { colors } = useTheme()
 
   return (
     <View

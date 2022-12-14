@@ -1,5 +1,20 @@
-import Instance from './Me/Instance'
+import { StatusBar } from 'expo-status-bar'
+import { StyleSheet, Text, View } from 'react-native'
 
-const Me = () => <Instance />
+const Me = () => (
+  <View style={styles.container}>
+    <Text>Me Screen</Text>
+    <StatusBar style='auto' />
+  </View>
+)
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+})
 
 export default Me

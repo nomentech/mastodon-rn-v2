@@ -1,6 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useTheme } from '@react-navigation/native'
-import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import Home from './Main/Home'
@@ -8,19 +7,15 @@ import Discover from './Main/Discover'
 import Inbox from './Main/Inbox'
 import Me from './Main/Me'
 import MyIcon from '../components/MyIcon'
-import { getInstanceActive } from '../slices/instancesSlice'
 
 const BottomTab = createBottomTabNavigator()
 
 const Main = () => {
   const { colors } = useTheme()
   const { t } = useTranslation('common')
-  const instanceActive = useSelector(getInstanceActive)
 
   return (
-    <BottomTab.Navigator
-      initialRouteName={instanceActive !== -1 ? 'Home' : 'Me'}
-    >
+    <BottomTab.Navigator>
       <BottomTab.Screen
         name='Home'
         component={Home}

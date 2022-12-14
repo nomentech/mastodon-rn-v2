@@ -12,18 +12,22 @@ import { useTheme } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { debounce } from 'lodash'
-import { useAppsMutation, useInstanceQuery } from '../../../slices/apiSlice'
-import { getAppDomain, updateAppDomain } from '../../../slices/appSlice'
-import { appConfig } from '../../../config'
-import MyButton from '../../../components/MyButton'
+import { useAppsMutation, useInstanceQuery } from '../slices/apiSlice'
+import { updateInstance } from '../slices/instanceSlice'
+import {
+  getAppConfig,
+  updateAppData,
+  updateAppDomain,
+} from '../slices/appSlice'
+import MyButton from '../components/MyButton'
 
-const Instance = () => {
+const Instance = ({ navigation }: any) => {
   const { colors } = useTheme()
   const { t } = useTranslation('common')
-  const domain = useSelector(getAppDomain)
   const dispatch = useDispatch()
   const [apps, { data: appData, isError, isLoading }] = useAppsMutation()
   const instanceQuery = useInstanceQuery()
+  const appConfig = useSelector(getAppConfig)
 
   const onChangeText = useCallback(
     debounce(
@@ -46,8 +50,12 @@ const Instance = () => {
     }
   }, [appData])
 
-  const processUpdate = () => {
-    console.log(domain)
+  const onSubmit = () => {
+    if (appData && instanceQuery.data) {
+      dispatch(updateInstance(instanceQuery.data))
+      dispatch(updateAppData(appData))
+      navigation.navigate('Main')
+    }
   }
 
   return (
@@ -58,7 +66,9 @@ const Instance = () => {
       <View style={{ flexDirection: 'row' }}>
         <Image
           source={{
-            uri: 'https://wallpaperaccess.com/full/3214390.jpg',
+            uri:
+              instanceQuery.data?.thumbnail ||
+              'https://wallpaperaccess.com/full/3214390.jpg',
           }}
           style={{ resizeMode: 'contain', flex: 1, aspectRatio: 16 / 9 }}
         />
@@ -96,7 +106,7 @@ const Instance = () => {
           name={t('login')}
           loading={isLoading}
           disabled={!appData}
-          onPress={processUpdate}
+          onPress={onSubmit}
         />
       </View>
       {instanceQuery.data && (
@@ -112,7 +122,6 @@ const Instance = () => {
           />
         </View>
       )}
-      <Text>{JSON.stringify(instanceQuery.error)}</Text>
     </KeyboardAvoidingView>
   )
 }
