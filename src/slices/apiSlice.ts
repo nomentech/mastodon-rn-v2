@@ -5,6 +5,7 @@ import type {
   FetchBaseQueryError,
 } from '@reduxjs/toolkit/query/react'
 import { RootState } from '../store'
+import { Instance } from '../types/instance'
 
 const rawBaseQuery = fetchBaseQuery({
   baseUrl: 'https://',
@@ -35,10 +36,14 @@ export const apiSlice = createApi({
         method: 'POST',
         body: data
       })      
+    }),
+    instance: builder.query<Instance, void>({
+      query: () => '/api/v1/instance'
     })
   })
 })
 
 export const {
-  useAppsMutation
+  useAppsMutation,
+  useInstanceQuery
 } = apiSlice

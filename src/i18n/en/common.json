@@ -10,5 +10,8 @@
   "cw_placeholder": "Spoiler warning",
   "content_placeholder": "What's on your mind?",
   "instance_domain": "instance.domain",
-  "login": "Login"
+  "login": "Login",
+  "name": "Name",
+  "users": "Users",
+  "toots": "Toots"
 }

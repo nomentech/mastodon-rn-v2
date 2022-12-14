@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import {
   KeyboardAvoidingView,
   StyleSheet,
@@ -12,7 +12,7 @@ import { useTheme } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { debounce } from 'lodash'
-import { useAppsMutation } from '../../../slices/apiSlice'
+import { useAppsMutation, useInstanceQuery } from '../../../slices/apiSlice'
 import { getAppDomain, updateAppDomain } from '../../../slices/appSlice'
 import { appConfig } from '../../../config'
 import MyButton from '../../../components/MyButton'
@@ -22,7 +22,8 @@ const Instance = () => {
   const { t } = useTranslation('common')
   const domain = useSelector(getAppDomain)
   const dispatch = useDispatch()
-  const [apps, { data: appData, error, isError, isLoading }] = useAppsMutation()
+  const [apps, { data: appData, isError, isLoading }] = useAppsMutation()
+  const instanceQuery = useInstanceQuery()
 
   const onChangeText = useCallback(
     debounce(
@@ -36,6 +37,14 @@ const Instance = () => {
     ),
     []
   )
+
+  useEffect(() => {
+    if (appData) {
+      instanceQuery.refetch()
+    } else {
+      instanceQuery.data = undefined
+    }
+  }, [appData])
 
   const processUpdate = () => {
     console.log(domain)
@@ -90,9 +99,35 @@ const Instance = () => {
           onPress={processUpdate}
         />
       </View>
-      <Text>{JSON.stringify(appData)}</Text>
-      <Text>{JSON.stringify(error)}</Text>
+      {instanceQuery.data && (
+        <View style={{ margin: 16 }}>
+          <Info name={t('name')} content={instanceQuery.data.title} />
+          <Info
+            name={t('users')}
+            content={instanceQuery.data.stats?.user_count}
+          />
+          <Info
+            name={t('toots')}
+            content={instanceQuery.data.stats?.status_count}
+          />
+        </View>
+      )}
+      <Text>{JSON.stringify(instanceQuery.error)}</Text>
     </KeyboardAvoidingView>
   )
 }
+
+const Info = ({ name, content }: any) => (
+  <View
+    style={{
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginVertical: 4,
+    }}
+  >
+    <Text style={{ fontWeight: 'bold' }}>{name}</Text>
+    <Text>{content}</Text>
+  </View>
+)
+
 export default Instance
