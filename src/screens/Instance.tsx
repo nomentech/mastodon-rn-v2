@@ -12,7 +12,7 @@ import { useTheme } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { debounce } from 'lodash'
-import { useAppsMutation, useInstanceQuery } from '../slices/apiSlice'
+import { useAppsMutation, useLazyInstanceQuery } from '../slices/apiSlice'
 import { updateInstance } from '../slices/instanceSlice'
 import {
   getAppConfig,
@@ -21,12 +21,12 @@ import {
 } from '../slices/appSlice'
 import MyButton from '../components/MyButton'
 
-const Instance = ({ navigation }: any) => {
+const Instance = () => {
   const { colors } = useTheme()
   const { t } = useTranslation('common')
   const dispatch = useDispatch()
   const [apps, { data: appData, isError, isLoading }] = useAppsMutation()
-  const instanceQuery = useInstanceQuery()
+  const [trigger, result] = useLazyInstanceQuery()
   const appConfig = useSelector(getAppConfig)
 
   const onChangeText = useCallback(
@@ -43,18 +43,13 @@ const Instance = ({ navigation }: any) => {
   )
 
   useEffect(() => {
-    if (appData) {
-      instanceQuery.refetch()
-    } else {
-      instanceQuery.data = undefined
-    }
+    trigger()
   }, [appData])
 
   const onSubmit = () => {
-    if (appData && instanceQuery.data) {
-      dispatch(updateInstance(instanceQuery.data))
+    if (appData && result.data) {
+      dispatch(updateInstance(result.data))
       dispatch(updateAppData(appData))
-      navigation.navigate('Main')
     }
   }
 
@@ -67,7 +62,7 @@ const Instance = ({ navigation }: any) => {
         <Image
           source={{
             uri:
-              instanceQuery.data?.thumbnail ||
+              result.data?.thumbnail ||
               'https://wallpaperaccess.com/full/3214390.jpg',
           }}
           style={{ resizeMode: 'contain', flex: 1, aspectRatio: 16 / 9 }}
@@ -109,17 +104,11 @@ const Instance = ({ navigation }: any) => {
           onPress={onSubmit}
         />
       </View>
-      {instanceQuery.data && (
+      {result.data && (
         <View style={{ margin: 16 }}>
-          <Info name={t('name')} content={instanceQuery.data.title} />
-          <Info
-            name={t('users')}
-            content={instanceQuery.data.stats?.user_count}
-          />
-          <Info
-            name={t('toots')}
-            content={instanceQuery.data.stats?.status_count}
-          />
+          <Info name={t('name')} content={result.data.title} />
+          <Info name={t('users')} content={result.data.stats?.user_count} />
+          <Info name={t('toots')} content={result.data.stats?.status_count} />
         </View>
       )}
     </KeyboardAvoidingView>
