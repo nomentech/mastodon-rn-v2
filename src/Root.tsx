@@ -19,7 +19,10 @@ const Root = () => {
   return (
     <NavigationContainer theme={themes.default}>
       <NativeStack.Navigator>
-        {!instance ? (
+        {/* persist object has a default property {"_persist": {"rehydrated": true, "version": -1}} 
+          consider it as empty with only this one property
+        */}
+        {Object.keys(instance).length === 1 ? (
           <NativeStack.Screen
             name='Instance'
             component={Instance}
@@ -27,7 +30,7 @@ const Root = () => {
               headerShown: false,
             }}
           />
-        ) : !account ? (
+        ) : Object.keys(account).length === 1 ? (
           <NativeStack.Screen
             name='Auth'
             component={Auth}

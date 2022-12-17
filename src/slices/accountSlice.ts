@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
-const initialState = null
+const initialState: any = null
 
 const accountSlice = createSlice({
   name: 'account',
