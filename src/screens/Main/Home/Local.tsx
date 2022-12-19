@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import { View } from 'react-native'
+import MyLoading from '../../../components/MyLoading'
+import Timeline from '../../../components/Timeline'
+import { useTimelineQuery } from '../../../slices/apiSlice'
 
-const Local = () => (
-  <View style={styles.container}>
-    <Text>Local Screen</Text>
-    <StatusBar style='auto' />
-  </View>
-)
+const Local = () => {
+  const { data, isFetching } = useTimelineQuery({
+    endpoint: 'public',
+    params: { local: 'true' },
+  })
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
+  return isFetching ? (
+    <MyLoading />
+  ) : (
+    <View>
+      <Timeline data={data} />
+    </View>
+  )
+}
 
 export default Local

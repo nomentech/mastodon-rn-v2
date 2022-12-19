@@ -55,6 +55,12 @@ export const apiSlice = createApi({
       query: () => ({
         url: '/api/v1/accounts/verify_credentials'
       })
+    }),
+    timeline: builder.query<any, any>({
+      query: ({endpoint, params}: any) => ({
+        url: `/api/v1/timelines/${endpoint}`,
+        params
+      })
     })
   })
 })
@@ -63,5 +69,6 @@ export const {
   useAppsMutation,
   useLazyInstanceQuery,
   useTokenMutation,
-  useLazyAccountQuery
+  useLazyAccountQuery,
+  useTimelineQuery
 } = apiSlice
