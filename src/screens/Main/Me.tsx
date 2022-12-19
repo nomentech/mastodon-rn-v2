@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar'
 import { Text, View } from 'react-native'
 import { useSelector } from 'react-redux'
 import { getAccount } from '../../slices/accountSlice'
-import MyLoading from '../../components/MyLoading'
+import Loading from '../../components/Loading'
 
 const Me = () => {
   const account = useSelector(getAccount)
@@ -13,7 +13,7 @@ const Me = () => {
       <StatusBar style='auto' />
     </View>
   ) : (
-    <MyLoading />
+    <Loading />
   )
 }
 

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 
 import Editor from './Compose/Editor'
 import EditAttachment from './Compose/EditAttachment'
-import MyButton from '../components/MyButton'
+import Button from '../components/Button'
 
 const Stack = createNativeStackNavigator()
 
@@ -19,7 +19,7 @@ const Compose = ({ navigation }: any) => {
   }, [totalTextCount, maxTootChars])
 
   const headerLeft = () => (
-    <MyButton
+    <Button
       name={t('cancel')}
       borderWidth={0}
       onPress={() => navigation.goBack()}
@@ -27,7 +27,7 @@ const Compose = ({ navigation }: any) => {
   )
 
   const headerRight = () => (
-    <MyButton name={t('publish')} onPress={() => navigation.navigate('Main')} />
+    <Button name={t('publish')} onPress={() => navigation.navigate('Main')} />
   )
 
   return (

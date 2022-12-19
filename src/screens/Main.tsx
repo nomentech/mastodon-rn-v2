@@ -6,7 +6,7 @@ import Home from './Main/Home'
 import Discover from './Main/Discover'
 import Inbox from './Main/Inbox'
 import Me from './Main/Me'
-import MyIcon from '../components/MyIcon'
+import Icon from '../components/Icon'
 
 const BottomTab = createBottomTabNavigator()
 
@@ -24,7 +24,7 @@ const Main = () => {
           tabBarActiveTintColor: colors.primary,
           tabBarLabel: t('home') || '',
           tabBarIcon: ({ color, size }) => (
-            <MyIcon name='home-outline' color={color} size={size} />
+            <Icon name='home-outline' color={color} size={size} />
           ),
         }}
       />
@@ -36,7 +36,7 @@ const Main = () => {
           tabBarActiveTintColor: colors.primary,
           tabBarLabel: t('discover') || '',
           tabBarIcon: ({ color, size }) => (
-            <MyIcon name='search-outline' color={color} size={size} />
+            <Icon name='search-outline' color={color} size={size} />
           ),
         }}
       />
@@ -48,7 +48,7 @@ const Main = () => {
           tabBarActiveTintColor: colors.primary,
           tabBarLabel: t('inbox') || '',
           tabBarIcon: ({ color, size }) => (
-            <MyIcon name='chatbox-outline' color={color} size={size} />
+            <Icon name='chatbox-outline' color={color} size={size} />
           ),
         }}
       />
@@ -60,7 +60,7 @@ const Main = () => {
           tabBarActiveTintColor: colors.primary,
           tabBarLabel: t('me') || '',
           tabBarIcon: ({ color, size }) => (
-            <MyIcon name='person-outline' color={color} size={size} />
+            <Icon name='person-outline' color={color} size={size} />
           ),
         }}
       />

@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
 import { Pressable, Text } from 'react-native'
 import { useTheme } from '@react-navigation/native'
-import MyIcon from './MyIcon'
-import MyLoading from './MyLoading'
+import Icon from './Icon'
+import Loading from './Loading'
 
-const MyButton = ({
+const Button = ({
   name,
   type = 'text',
   loading = false,
@@ -16,7 +16,7 @@ const MyButton = ({
   const children = useMemo(() => {
     if (type === 'text') {
       return loading ? (
-        <MyLoading />
+        <Loading />
       ) : (
         <Text style={{ color: disabled ? colors.border : colors.primary }}>
           {name}
@@ -26,9 +26,9 @@ const MyButton = ({
 
     if (type === 'icon') {
       return loading ? (
-        <MyLoading />
+        <Loading />
       ) : (
-        <MyIcon name={name} size={30} color={colors.primary} />
+        <Icon name={name} size={30} color={colors.primary} />
       )
     }
   }, [loading, name, type])
@@ -51,4 +51,4 @@ const MyButton = ({
   )
 }
 
-export default MyButton
+export default Button

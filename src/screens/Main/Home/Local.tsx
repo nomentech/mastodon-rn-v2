@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import MyLoading from '../../../components/MyLoading'
+import Loading from '../../../components/Loading'
 import Timeline from '../../../components/Timeline'
 import { useTimelineQuery } from '../../../slices/apiSlice'
 
@@ -10,7 +10,7 @@ const Local = () => {
   })
 
   return isFetching ? (
-    <MyLoading />
+    <Loading />
   ) : (
     <View>
       <Timeline data={data} />

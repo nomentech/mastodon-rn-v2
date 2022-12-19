@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { FlatList, View } from 'react-native'
-import MyLoading from '../../components/MyLoading'
+import Loading from '../../components/Loading'
 import Header from './Editor/Header'
 import Toolbar from './Editor/Toolbar'
 
@@ -10,7 +10,7 @@ const Editor = () => {
     if (isFetching) {
       return (
         <View key='listEmpty' style={{ flex: 1, alignItems: 'center' }}>
-          <MyLoading />
+          <Loading />
         </View>
       )
     }

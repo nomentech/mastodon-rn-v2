@@ -19,7 +19,7 @@ import {
   updateAppData,
   updateAppDomain,
 } from '../slices/appSlice'
-import MyButton from '../components/MyButton'
+import Button from '../components/Button'
 
 const Instance = () => {
   const { colors } = useTheme()
@@ -97,7 +97,7 @@ const Instance = () => {
           placeholder={' ' + t('instance_domain')}
           onChangeText={onChangeText}
         />
-        <MyButton
+        <Button
           name={t('login')}
           loading={isLoading}
           disabled={!appData}

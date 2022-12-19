@@ -1,7 +1,6 @@
 import { View, Pressable, Text } from 'react-native'
-import { useTheme } from '@react-navigation/native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import MyButton from '../../../components/MyButton'
+import Button from '../../../components/Button'
 
 const TopTabBar = ({ state, descriptors, navigation }: any) => {
   const insets = useSafeAreaInsets()
@@ -16,7 +15,7 @@ const TopTabBar = ({ state, descriptors, navigation }: any) => {
         alignItems: 'center',
       }}
     >
-      <MyButton disabled={true} style={{ marginLeft: 10 }} borderWidth={0} />
+      <Button disabled={true} style={{ marginLeft: 10 }} borderWidth={0} />
       <View style={{ flexDirection: 'row' }}>
         {state.routes.map((route: any, index: number) => {
           const { options } = descriptors[route.key]
@@ -48,7 +47,7 @@ const TopTabBar = ({ state, descriptors, navigation }: any) => {
           )
         })}
       </View>
-      <MyButton
+      <Button
         name='add-circle'
         type='icon'
         borderWidth={0}

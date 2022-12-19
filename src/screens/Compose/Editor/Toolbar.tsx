@@ -1,5 +1,5 @@
 import { View, StyleSheet } from 'react-native'
-import MyIcon from '../../../components/MyIcon'
+import Icon from '../../../components/Icon'
 
 const Toolbar = () => (
   <View
@@ -11,11 +11,11 @@ const Toolbar = () => (
       alignItems: 'center',
     }}
   >
-    <MyIcon name='attach-outline' size={24} />
-    <MyIcon name='stats-chart-outline' size={24} />
-    <MyIcon name='earth-outline' size={24} />
-    <MyIcon name='warning-outline' size={24} />
-    <MyIcon name='happy-outline' size={24} />
+    <Icon name='attach-outline' size={24} />
+    <Icon name='stats-chart-outline' size={24} />
+    <Icon name='earth-outline' size={24} />
+    <Icon name='warning-outline' size={24} />
+    <Icon name='happy-outline' size={24} />
   </View>
 )
 

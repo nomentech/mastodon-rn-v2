@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import MyIcon from '../MyIcon'
+import Icon from '../Icon'
 
 const Footer = () => (
   <View
@@ -10,11 +10,11 @@ const Footer = () => (
       marginVertical: 8,
     }}
   >
-    <MyIcon name='arrow-undo-outline' />
-    <MyIcon name='repeat-sharp' />
-    <MyIcon name='star-outline' />
-    <MyIcon name='bookmark-outline' />
-    <MyIcon name='ellipsis-horizontal' />
+    <Icon name='arrow-undo-outline' />
+    <Icon name='repeat-sharp' />
+    <Icon name='star-outline' />
+    <Icon name='bookmark-outline' />
+    <Icon name='ellipsis-horizontal' />
   </View>
 )
 
