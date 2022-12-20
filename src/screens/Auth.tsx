@@ -20,18 +20,21 @@ const Auth = () => {
   const getToken = async (code: string) => {
     try {
       const { data }: any = await token({
-        client_id: appData?.client_id,
-        client_secret: appData?.client_secret,
-        grant_type: 'authorization_code',
-        code: code,
-        redirect_uri: appData?.redirect_uri,
+        endpoint: 'token',
+        data: {
+          client_id: appData?.client_id,
+          client_secret: appData?.client_secret,
+          grant_type: 'authorization_code',
+          code: code,
+          redirect_uri: appData?.redirect_uri,
+        },
       })
       dispatch(updateAppToken(data.access_token))
 
       const { data: account } = await trigger()
       dispatch(updateAccount(account))
     } catch (error) {
-      console.log('Auth Screen', error)
+      console.log('Get token', error)
     }
   }
 

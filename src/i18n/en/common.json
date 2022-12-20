@@ -11,7 +11,12 @@
   "content_placeholder": "What's on your mind?",
   "instance_domain": "instance.domain",
   "login": "Login",
+  "logout": "Logout",
   "name": "Name",
   "users": "Users",
-  "toots": "Toots"
+  "toots": "Toots",
+  "edit_profile": "Edit Profile",
+  "followers_count": "Followers",
+  "following_count": "Following",
+  "statuses_count": "Statuses"
 }

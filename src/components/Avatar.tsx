@@ -1,9 +1,9 @@
 import { Image } from 'react-native'
 
-const Avatar = ({ uri }: any) => {
+const Avatar = ({ uri, size }: any) => {
   return (
     <Image
-      style={{ width: 40, height: 40, marginRight: 8 }}
+      style={{ width: size, height: size, borderRadius: size / 10 }}
       source={{ uri: uri }}
     />
   )

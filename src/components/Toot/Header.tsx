@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import Avatar from './Avatar'
+import Avatar from '../Avatar'
 
 const formatter = new Intl.RelativeTimeFormat(undefined, {
   numeric: 'auto',
@@ -40,8 +40,8 @@ const Header = ({ account, createdAt }: any) => (
         alignItems: 'center',
       }}
     >
-      <Avatar uri={account.avatar} />
-      <View>
+      <Avatar uri={account.avatar} size={40} />
+      <View style={{ marginLeft: 8 }}>
         <Text>{account.display_name || account.username}</Text>
         <Text>@{account.username}</Text>
       </View>

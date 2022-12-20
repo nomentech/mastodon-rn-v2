@@ -3,7 +3,6 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
   Platform,
-  Image,
   View,
   TextInput,
   Text,
@@ -20,6 +19,7 @@ import {
   updateAppDomain,
 } from '../slices/appSlice'
 import Button from '../components/Button'
+import BannerImage from '../components/BannerImage'
 
 const Instance = () => {
   const { colors } = useTheme()
@@ -58,16 +58,12 @@ const Instance = () => {
       style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <View style={{ flexDirection: 'row' }}>
-        <Image
-          source={{
-            uri:
-              result.data?.thumbnail ||
-              'https://wallpaperaccess.com/full/3214390.jpg',
-          }}
-          style={{ resizeMode: 'contain', flex: 1, aspectRatio: 16 / 9 }}
-        />
-      </View>
+      <BannerImage
+        uri={
+          result.data?.thumbnail ||
+          'https://wallpaperaccess.com/full/3214390.jpg'
+        }
+      />
       <View
         style={{
           margin: 16,

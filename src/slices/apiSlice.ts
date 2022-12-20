@@ -45,8 +45,8 @@ export const apiSlice = createApi({
       query: () => '/api/v1/instance'
     }),
     token: builder.mutation({
-      query: data => ({
-        url: '/oauth/token',
+      query: ({endpoint, data}): any => ({
+        url: `/oauth/${endpoint}`,
         method: 'POST',
         body: data
       })
