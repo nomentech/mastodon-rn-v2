@@ -10,11 +10,11 @@ const Footer = () => (
       marginVertical: 8,
     }}
   >
-    <Icon name='arrow-undo-outline' />
-    <Icon name='repeat-sharp' />
-    <Icon name='star-outline' />
-    <Icon name='bookmark-outline' />
-    <Icon name='ellipsis-horizontal' />
+    <Icon size={20} name='arrow-undo-outline' />
+    <Icon size={20} name='repeat-sharp' />
+    <Icon size={20} name='star-outline' />
+    <Icon size={20} name='bookmark-outline' />
+    <Icon size={20} name='ellipsis-horizontal' />
   </View>
 )
 

@@ -9,6 +9,7 @@ import Main from './screens/Main'
 import themes from '../src/styles/themes'
 import { getInstance } from './slices/instanceSlice'
 import { getAccount } from './slices/accountSlice'
+import { MenuProvider } from 'react-native-popup-menu'
 
 const NativeStack = createNativeStackNavigator()
 
@@ -17,47 +18,49 @@ const Root = () => {
   const account = useSelector(getAccount)
 
   return (
-    <NavigationContainer theme={themes.default}>
-      <NativeStack.Navigator>
-        {/* persist object has a default property {"_persist": {"rehydrated": true, "version": -1}} 
+    <MenuProvider>
+      <NavigationContainer theme={themes.default}>
+        <NativeStack.Navigator>
+          {/* persist object has a default property {"_persist": {"rehydrated": true, "version": -1}} 
           consider it as empty with only this one property
         */}
-        {Object.keys(instance).length === 1 ? (
-          <NativeStack.Screen
-            name='Instance'
-            component={Instance}
-            options={{
-              headerShown: false,
-            }}
-          />
-        ) : Object.keys(account).length === 1 ? (
-          <NativeStack.Screen
-            name='Auth'
-            component={Auth}
-            options={{
-              headerShown: false,
-            }}
-          />
-        ) : (
-          <>
+          {Object.keys(instance).length === 1 ? (
             <NativeStack.Screen
-              name='Main'
-              component={Main}
+              name='Instance'
+              component={Instance}
               options={{
                 headerShown: false,
               }}
             />
+          ) : Object.keys(account).length === 1 ? (
             <NativeStack.Screen
-              name='Compose'
-              component={Compose}
+              name='Auth'
+              component={Auth}
               options={{
                 headerShown: false,
               }}
             />
-          </>
-        )}
-      </NativeStack.Navigator>
-    </NavigationContainer>
+          ) : (
+            <>
+              <NativeStack.Screen
+                name='Main'
+                component={Main}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <NativeStack.Screen
+                name='Compose'
+                component={Compose}
+                options={{
+                  headerShown: false,
+                }}
+              />
+            </>
+          )}
+        </NativeStack.Navigator>
+      </NavigationContainer>
+    </MenuProvider>
   )
 }
 

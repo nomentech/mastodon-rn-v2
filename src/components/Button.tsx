@@ -9,8 +9,9 @@ const Button = ({
   type = 'text',
   loading = false,
   disabled = false,
-  onPress = () => {},
   borderWidth = 1,
+  color,
+  onPress = () => {},
 }: any) => {
   const { colors } = useTheme()
   const children = useMemo(() => {
@@ -25,13 +26,9 @@ const Button = ({
     }
 
     if (type === 'icon') {
-      return loading ? (
-        <Loading />
-      ) : (
-        <Icon name={name} size={30} color={colors.primary} />
-      )
+      return loading ? <Loading /> : <Icon name={name} color={color} />
     }
-  }, [loading, name, type])
+  }, [loading, name, type, color])
 
   return (
     <Pressable

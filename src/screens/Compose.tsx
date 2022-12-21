@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { KeyboardAvoidingView, Pressable, Text, Platform } from 'react-native'
+import { KeyboardAvoidingView, Platform } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useTranslation } from 'react-i18next'
 

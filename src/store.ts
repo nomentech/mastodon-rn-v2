@@ -13,6 +13,7 @@ import {
 import appReducer from './slices/appSlice'
 import accountReducer from './slices/accountSlice'
 import instanceReducer from './slices/instanceSlice'
+import composeReducer from './slices/composeSlice'
 import { apiSlice } from './slices/apiSlice'
 
 const prefix = 'mastodon'
@@ -40,6 +41,7 @@ const store = configureStore({
     app: persistReducer(appPersistConfig, appReducer) as Reducer,
     account: persistReducer(accountPersistConfig, accountReducer) as Reducer,
     instance: persistReducer(instancePersistConfig, instanceReducer) as Reducer,
+    compose: composeReducer,
     [apiSlice.reducerPath]: apiSlice.reducer
   },
   middleware: getDefaultMiddleware =>

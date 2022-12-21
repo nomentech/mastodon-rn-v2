@@ -18,5 +18,9 @@
   "edit_profile": "Edit Profile",
   "followers_count": "Followers",
   "following_count": "Following",
-  "statuses_count": "Statuses"
+  "statuses_count": "Statuses",
+  "public": "Public",
+  "unlist": "Unlist",
+  "private": "Followers only",
+  "direct": "Only people I mention"
 }
