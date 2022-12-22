@@ -12,12 +12,6 @@ const Stack = createNativeStackNavigator()
 const Compose = ({ navigation }: any) => {
   const { t } = useTranslation('common')
 
-  const totalTextCount = 0
-  const maxTootChars = 500
-  const headerContent = useMemo(() => {
-    return `${totalTextCount} / ${maxTootChars}`
-  }, [totalTextCount, maxTootChars])
-
   const headerLeft = () => (
     <Button
       name={t('cancel')}
@@ -40,12 +34,7 @@ const Compose = ({ navigation }: any) => {
           name='Editor'
           component={Editor}
           options={{
-            title: headerContent,
-            headerTitleStyle: {
-              fontWeight: totalTextCount > maxTootChars ? 'bold' : 'light',
-              fontSize: 16,
-            } as any,
-            headerTintColor: totalTextCount > maxTootChars ? 'red' : 'black',
+            title: t('new_post') || '',
             headerLeft,
             headerRight,
           }}

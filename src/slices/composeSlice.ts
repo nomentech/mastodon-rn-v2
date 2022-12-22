@@ -2,13 +2,17 @@ import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 interface ComposeState {
-  showCW: boolean,
+  showCW: boolean
   visibility: string
+  maxLength: number
+  charsLeft: number
 }
 
 const initialState: ComposeState = {
   showCW: false,
-  visibility: 'public'
+  visibility: 'public',
+  maxLength: 500,
+  charsLeft: 500
 }
 
 const composeSlice = createSlice({
@@ -20,12 +24,17 @@ const composeSlice = createSlice({
     },
     updateVisibility: (state, action) => {
       state.visibility = action.payload
+    },
+    updateCharsLeft: (state, action) => {
+      state.charsLeft = action.payload
     }
   }
 })
 
 export const getShowCW = (state: RootState) => state.compose.showCW
 export const getVisibility = ( state: RootState) => state.compose.visibility
+export const getMaxLength = (state: RootState) => state.compose.maxLength
+export const getCharsLeft = (state: RootState) => state.compose.charsLeft
 
-export const { updateShowCW, updateVisibility } = composeSlice.actions
+export const { updateShowCW, updateVisibility, updateCharsLeft } = composeSlice.actions
 export default composeSlice.reducer

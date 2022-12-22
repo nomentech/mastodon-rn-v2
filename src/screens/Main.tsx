@@ -7,6 +7,7 @@ import Discover from './Main/Discover'
 import Inbox from './Main/Inbox'
 import Me from './Main/Me'
 import Icon from '../components/Icon'
+import Compose from './Compose'
 
 const BottomTab = createBottomTabNavigator()
 
@@ -22,7 +23,7 @@ const Main = () => {
         options={{
           headerShown: false,
           tabBarActiveTintColor: colors.primary,
-          tabBarLabel: t('home') || '',
+          tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <Icon name='home-outline' color={color} size={size} />
           ),
@@ -34,9 +35,21 @@ const Main = () => {
         options={{
           headerShown: false,
           tabBarActiveTintColor: colors.primary,
-          tabBarLabel: t('discover') || '',
+          tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <Icon name='search-outline' color={color} size={size} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name='Compose'
+        component={Compose}
+        options={{
+          headerShown: false,
+          tabBarActiveTintColor: colors.primary,
+          tabBarShowLabel: false,
+          tabBarIcon: () => (
+            <Icon name='add-circle' color={colors.primary} size={50} />
           ),
         }}
       />
@@ -46,9 +59,9 @@ const Main = () => {
         options={{
           headerShown: false,
           tabBarActiveTintColor: colors.primary,
-          tabBarLabel: t('inbox') || '',
+          tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
-            <Icon name='chatbox-outline' color={color} size={size} />
+            <Icon name='notifications-outline' color={color} size={size} />
           ),
         }}
       />
@@ -58,7 +71,7 @@ const Main = () => {
         options={{
           headerShown: false,
           tabBarActiveTintColor: colors.primary,
-          tabBarLabel: t('me') || '',
+          tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <Icon name='person-outline' color={color} size={size} />
           ),

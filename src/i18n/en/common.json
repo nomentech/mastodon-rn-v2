@@ -22,5 +22,6 @@
   "public": "Public",
   "unlist": "Unlist",
   "private": "Followers only",
-  "direct": "Only people I mention"
+  "direct": "Only people I mention",
+  "new_post": "New Post"
 }

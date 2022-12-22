@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTheme } from '@react-navigation/native'
 import { View, Text, StyleSheet } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
@@ -17,6 +18,7 @@ import {
   updateShowCW,
   updateVisibility,
 } from '../../../slices/composeSlice'
+import { getCharsLeft } from '../../../slices/composeSlice'
 
 const { Popover } = renderers
 const options = [
@@ -32,6 +34,7 @@ const Toolbar = () => {
   const dispatch = useDispatch()
   const showCW = useSelector(getShowCW)
   const visibility = useSelector(getVisibility)
+  const charsLeft = useSelector(getCharsLeft)
 
   const toggleCW = () => {
     dispatch(updateShowCW(!showCW))
@@ -66,38 +69,46 @@ const Toolbar = () => {
         height: 45,
         borderTopWidth: StyleSheet.hairlineWidth,
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         alignItems: 'center',
+        paddingLeft: 8,
+        paddingRight: 16,
       }}
     >
-      <Button type='icon' borderWidth={0} name='attach-outline' />
-      <Button type='icon' borderWidth={0} name='stats-chart-outline' />
-      <Menu
-        onSelect={onSelect}
-        renderer={Popover}
-        rendererProps={{ preferredPlacement: 'top' }}
-      >
-        <MenuTrigger
-          children={
-            <Icon
-              name={
-                options.find((option: any) => option.name === visibility)?.icon
-              }
-            />
-          }
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <Button type='icon' borderWidth={0} name='attach-outline' />
+        <Button type='icon' borderWidth={0} name='stats-chart-outline' />
+        <Menu
+          onSelect={onSelect}
+          renderer={Popover}
+          rendererProps={{ preferredPlacement: 'top' }}
+        >
+          <MenuTrigger
+            children={
+              <View style={{ marginHorizontal: 12 }}>
+                <Icon
+                  name={
+                    options.find((option: any) => option.name === visibility)
+                      ?.icon
+                  }
+                />
+              </View>
+            }
+          />
+          <MenuOptions>
+            <Options />
+          </MenuOptions>
+        </Menu>
+        <Button
+          type='icon'
+          borderWidth={0}
+          name='warning-outline'
+          color={showCW ? colors.primary : null}
+          onPress={toggleCW}
         />
-        <MenuOptions>
-          <Options />
-        </MenuOptions>
-      </Menu>
-      <Button
-        type='icon'
-        borderWidth={0}
-        name='warning-outline'
-        color={showCW ? colors.primary : null}
-        onPress={toggleCW}
-      />
-      <Button type='icon' borderWidth={0} name='happy-outline' />
+        <Button type='icon' borderWidth={0} name='happy-outline' />
+      </View>
+      <Text>{charsLeft}</Text>
     </View>
   )
 }

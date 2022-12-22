@@ -11,11 +11,10 @@ const TopTabBar = ({ state, descriptors, navigation }: any) => {
         paddingTop: insets.top,
         paddingBottom: 10,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
       }}
     >
-      <Button disabled={true} style={{ marginLeft: 10 }} borderWidth={0} />
       <View style={{ flexDirection: 'row' }}>
         {state.routes.map((route: any, index: number) => {
           const { options } = descriptors[route.key]
@@ -39,7 +38,11 @@ const TopTabBar = ({ state, descriptors, navigation }: any) => {
           }
 
           return (
-            <Pressable key={index} onPress={onPress} style={{ marginLeft: 20 }}>
+            <Pressable
+              key={index}
+              onPress={onPress}
+              style={{ marginHorizontal: 10 }}
+            >
               <Text style={{ fontWeight: isFocused ? 'bold' : 'light' } as any}>
                 {label}
               </Text>
@@ -47,13 +50,6 @@ const TopTabBar = ({ state, descriptors, navigation }: any) => {
           )
         })}
       </View>
-      <Button
-        name='add-circle'
-        type='icon'
-        borderWidth={0}
-        style={{ marginRight: 10 }}
-        onPress={() => navigation.navigate('Compose')}
-      />
     </View>
   )
 }

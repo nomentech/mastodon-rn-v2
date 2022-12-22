@@ -1,20 +1,33 @@
+import { useEffect, useRef, useState } from 'react'
 import { TextInput, StyleSheet } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { getShowCW } from '../../../slices/composeSlice'
-import { useEffect, useRef } from 'react'
+import {
+  getMaxLength,
+  getShowCW,
+  updateCharsLeft,
+} from '../../../slices/composeSlice'
 
 const Header = () => {
   const { t } = useTranslation('common')
+  const dispatch = useDispatch()
   const showCW = useSelector(getShowCW)
+  const maxLength = useSelector(getMaxLength)
 
   const cwInputRef: any = useRef()
   const contentInputRef: any = useRef()
+
+  const [cwLength, setCWLength] = useState(0)
+  const [contentLength, setContentLength] = useState(0)
 
   useEffect(() => {
     if (showCW) cwInputRef.current.focus()
     else contentInputRef.current.focus()
   }, [showCW])
+
+  useEffect(() => {
+    dispatch(updateCharsLeft(maxLength - cwLength - contentLength))
+  }, [cwLength, contentLength])
 
   return (
     <>
@@ -33,6 +46,7 @@ const Header = () => {
           multiline
           scrollEnabled={false}
           placeholder={t('cw_placeholder') || ''}
+          onChangeText={(text) => setCWLength(text.length)}
         />
       )}
       <TextInput
@@ -43,11 +57,11 @@ const Header = () => {
           marginLeft: 16,
           marginRight: 16,
         }}
-        // autoFocus
         enablesReturnKeyAutomatically
         multiline
         scrollEnabled={false}
         placeholder={t('content_placeholder') || ''}
+        onChangeText={(text) => setContentLength(text.length)}
       />
     </>
   )
